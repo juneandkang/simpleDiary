@@ -1,47 +1,32 @@
 import './App.css';
 import DiaryEditor from './DiaryEditior';
 import DiaryList from './DiaryList';
+import { useRef, useState } from 'react';
 
 function App() {
 
-  const dummyList = [
-    {
-      id:1,
-      author: "강준희",
-      content: '첫번째 일기입니다.',
-      emotion: 5,
-      created_date: new Date().getTime(),
-    },
-    {
-      id:2,
-      author: "김땡떙",
-      content: '두번째 일기입니다.',
-      emotion: 3,
-      created_date: new Date().getTime(),
-    },
-    {
-      id:3,
-      author: "이떙땡",
-      content: '세번째 일기입니다.',
-      emotion: 2,
-      created_date: new Date().getTime(),
-    },
-    {
-      id:4,
-      author: "최삼삼",
-      content: '네번째 일기입니다.',
-      emotion: 4,
-      created_date: new Date().getTime(),
-    },
-  ]
+  const [data,setData] = useState([]);
+  const dataId = useRef(0);
 
+  const onCreate = (author, content, emotion) => {
+    const created_date = new Date().getTime();
+    const newItem = {
+      author,
+      content,
+      emotion,
+      created_date,
+      id: dataId.current,
+    }
+    dataId.current += 1;
+    setData([newItem, ...data]);
+  }
 
   return (
     <div className="App">
       <header className="App-header">
       </header>
-      <DiaryEditor />
-      <DiaryList diaryList={dummyList}/>
+      <DiaryEditor onCreate={onCreate}/>
+      <DiaryList diaryList={data}/>
     </div>
   );
 }
