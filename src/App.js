@@ -44,7 +44,6 @@ function App() {
   }
 
   const onRemove = (targetId) =>{
-    console.log(`${targetId}가 삭제되었습니다.`);
     const newDiaryList = data.filter((item)=>item.id !== targetId);
     setData(newDiaryList);
   }
