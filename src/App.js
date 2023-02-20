@@ -58,8 +58,6 @@ function App() {
 
   return (
     <div className="App">
-      <header className="App-header">
-      </header>
       <DiaryEditor onCreate={onCreate}/>
       <DiaryList diaryList={data} onRemove={onRemove} onEdit={onEdit}/>
     </div>
